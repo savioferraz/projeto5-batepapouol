@@ -15,12 +15,13 @@ header img {
     padding: 16px 0 11px 22px;
 }
 header ion-icon {
-font-size: 42px;    
-color: black;
-padding: 19px 18px 24px 0;
+    font-size: 42px;    
+    color: black;
+    padding: 19px 18px 24px 0;
 }
 .content {
     background-color: #E5E5E5;
+    height: 100vh;
     margin-top: 80px;
     margin-bottom: 80px;
     overflow-x: auto;
@@ -39,14 +40,24 @@ padding: 19px 18px 24px 0;
     padding: 10px 9px;
     margin: 3px auto;
 }
-.entradasaida {
+.status {
+    display: flex;
+    font-family: Roboto;
+    font-size: 14px;
     background-color: #DCDCDC;
+    font-weight: 400;
+    border-radius: 2px;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 143%;
+    padding: 10px 9px;
+    margin: 3px auto;
 }
 .timeStamp {
     color: #aaaaaa;
     margin-right: 3px;
 }
-.userName {
+.from, .to {
     font-weight: 700;
     margin: auto 3px;
 }
