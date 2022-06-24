@@ -4,5 +4,9 @@ Projeto 5- Bate-papo UOL (curso Driven)  Projeto 5 do curso de desenvolvimento F
 
 --Changelog--
 
+Versão 0.2:
+-Requisição do servidor;
+-DOM populado com as mensagens do servidor;
+
 Versão 0.1:
 -Criado layout do site;
