@@ -1,41 +1,77 @@
 // Variáveis globais
-let name;
 let mensagens = [];
+let usuario;
+
+// Cadastrar usuário
+entrarSala()
+function entrarSala () {
+    nomeUsuario = prompt ("Digite um nome de usuário?")
+    usuario = {name: nomeUsuario}
+    const requisiçãoEntrar = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", usuario);
+    setInterval(manterConexao, 5000);
+    requisiçãoEntrar.then(entradaLiberada);
+    requisiçãoEntrar.catch(entradaErro);
+    setInterval(renderizarMensagens, 3000);
+}
+function entradaLiberada() {
+    alert ("Seja bem vindo ao bate-papo Driven!");
+    listarMensagens();
+}
+function entradaErro () {
+    alert ("Nome de usuario em uso.Tente outro nome.");
+    entrarSala();
+}
 
 // Conexão com o servidor
-// const promiseParticipants = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
-// const promiseStatus = axios.get("https://mock-api.driven.com.br/api/v6/uol/status");
-const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
-// promiseParticipants.then(processarRespostaParticipants);
-// promiseStatus.then(processarRespostaStatus);
-promise.then(processarResposta);
-
-// Teste de requisição servidor
-// function processarRespostaParticipants(respostaParticipants){
-//     console.log("Voltou a resposta 'participants'");
-// }
-// function processarRespostaStatus(respostaStatus){
-//     console.log("Voltou a resposta 'status'");
-// }
+function listarMensagens(){
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
+    promise.then(processarResposta);
+}
 function processarResposta(resposta){
-    console.log("Requisição retornada com sucesso");
-    console.log(resposta.data);
     mensagens = resposta.data;
     renderizarMensagens();
 }
-console.log("Enviou requisição");
+
+// Manter conexão
+function manterConexao() {
+    const online = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", usuario);
+    online.then(listarMensagens);
+}
 
 // Renderizar mensagens
 function renderizarMensagens() {
     const ul = document.querySelector(".content");
+    document.querySelector("ul").innerHTML = "";
     for (let i = 0; i < mensagens.length; i++) {
         if (mensagens[i].type == "status") {
-        ul.innerHTML += `<li class="status"><div class="timeStamp">${mensagens[i].time}</div><div class="from">${mensagens[i].from}</div></div>${mensagens[i].text}</li>`
+        ul.innerHTML += `<li class="status x"><div class="timeStamp">${mensagens[i].time}</div><div class="from">${mensagens[i].from}</div></div>${mensagens[i].text}</li>`
         ul.scrollIntoView();
         }
         if (mensagens[i].type == "message") {
-            ul.innerHTML += `<li class="msgs"><div class="timeStamp">${mensagens[i].time}</div><div class="from">${mensagens[i].from}</div>para<div class="to">${mensagens[i].to}</div>${mensagens[i].text}</li>`
+            ul.innerHTML += `<li class="msgs x"><div class="timeStamp">${mensagens[i].time}</div><div class="from">${mensagens[i].from}</div>para<div class="to">${mensagens[i].to}</div>${mensagens[i].text}</li>`
         }
+    const ultimaMensagem = document.querySelector(".x:last-child");
+    ultimaMensagem.scrollIntoView();
     }
-    
+}
+
+// Enviar mensagens
+function enviarMensagens () {
+    texto = document.querySelector(".areatexto").value;
+    const mensagemEnviada = {
+        from: `${usuario.name}`, 
+        to: "Todos", 
+        text: texto, 
+        type: "message"
+    };
+    const requisiçãoEnviar = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagemEnviada);
+    requisiçãoEnviar.then(renderizarMensagens);
+    requisiçãoEnviar.catch(envioErro);
+    document.querySelector(".areatexto").value = "";
+}
+
+function envioErro(erro) {
+    statusCode = erro.response.status;
+    alert (`Opa! Algo deu errado...
+Erro ${statusCode}`);
 }
