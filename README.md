@@ -4,6 +4,10 @@ Projeto 5- Bate-papo UOL (curso Driven)  Projeto 5 do curso de desenvolvimento F
 
 --Changelog--
 
+Versão 1.0:
+-Bate-papo funcional;
+-Pendente bônus;
+
 Versão 0.2:
 -Requisição do servidor;
 -DOM populado com as mensagens do servidor;
