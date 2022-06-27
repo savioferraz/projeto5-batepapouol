@@ -43,7 +43,7 @@ function manterConexao() {
 // Renderizar mensagens
 function renderizarMensagens() {
     const ul = document.querySelector(".content");
-    document.querySelector("ul").innerHTML = "";
+    ul.innerHTML = "";
     for (let i = 0; i < mensagens.length; i++) {
         if (mensagens[i].type == "status") {
         ul.innerHTML += `<li class="status x"><div class="timeStamp">${mensagens[i].time}</div><div class="from">${mensagens[i].from}</div></div>${mensagens[i].text}</li>`
