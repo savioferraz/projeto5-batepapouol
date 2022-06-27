@@ -14,8 +14,33 @@
 <body>
     <header>
         <img src="logoBatePapoUol.jpg">
-        <ion-icon name="people"></ion-icon>
+        <ion-icon name="people" onclick="mostrarOcultar()"></ion-icon>
     </header>
+    <div class="telaLogin">
+        <img src="logoBatePapoUol.jpg">
+        <input type="text" placeholder="Digite seu nome">
+        <button onclick="entrarSala()">Entrar</button>
+    </div>
+    <div class="listaUsuarios escondido">
+        <div class="menuLateral">
+            <h1> Escolha um contato para enviar mensagem:</h1>
+            <div class="todos" onclick="mostrarOcultar()">
+                <ion-icon name="people"></ion-icon>
+                <p>Todos</p>
+            </div>
+            <ul class="usuariosOnline">
+            </ul>
+            <h1>Escolha a visibilidade:</h1>
+            <div class="todos">
+                <ion-icon name="lock-open"></ion-icon>
+                <p>Público</p>
+            </div>
+            <div class="todos">
+                <ion-icon name="lock-closed"></ion-icon>
+                <p>Reservado</p>
+            </div>
+        </div>
+    </div>
     <ul class="content">
         
     </ul>

@@ -18,6 +18,7 @@ header ion-icon {
     font-size: 42px;    
     color: black;
     padding: 19px 18px 24px 0;
+    cursor: pointer;
 }
 .content {
     background-color: #E5E5E5;
@@ -90,10 +91,107 @@ textarea {
     outline: none;
     overflow-y: hidden;
 }
-textarea::placeholder {
-
+.telaLogin {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
-/* textarea:focus {
-    font-style: normal;
+.telaLogin img {
+    width: 130px;
+    height: 92px;
+    margin-bottom: 50px;
+}
+input {
+    width: 60vw;
+    margin: 10px auto;
+    border-radius: 4px;
+    border: 1px solid #D7D7D7;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 25px;
+    text-align: center;
+}
+input:focus::placeholder {
     color: transparent;
-} */
+}
+button {
+    background-color: #E7E7E7;
+    border: none;
+    border-radius: 9px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #696969;
+    width: 110px;
+    height: 45px;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px auto;
+}
+.listaUsuarios {
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    height: 100vh;
+    width: 100vw;
+}
+.menuLateral {
+    background-color: #ffffff;
+    height: 100vh;
+    width: 70vw;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transition: all 1s linear;
+}
+.menuLateral h1 {
+    font-family: Roboto;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 84px;
+    font-weight: 700;
+    box-sizing: border-box;
+    padding: 40px 40px;
+}
+.todos, .usuariosOnline {
+    display: flex;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 400;
+    height: 36px;
+    margin: 2px 0 2px 18px;
+    cursor: pointer;
+}
+.usuariosOnline {
+    flex-direction: column;
+    overflow-y: scroll;
+    flex-shrink: 1;
+    height: max-content;
+    max-height: calc(100vh - 300px);
+}
+.usuariosOnline li {
+    display: flex;
+    height: 36px;
+    cursor: pointer;
+}
+.escondido {
+    display: none;
+    transition: all 1s linear;
+}

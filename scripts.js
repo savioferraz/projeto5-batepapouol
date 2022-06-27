@@ -1,11 +1,11 @@
 // Variáveis globais
 let mensagens = [];
 let usuario;
+let usuariosOn = [];
 
 // Cadastrar usuário
-entrarSala()
 function entrarSala () {
-    nomeUsuario = prompt ("Digite um nome de usuário?")
+    nomeUsuario = document.querySelector("input").value
     usuario = {name: nomeUsuario}
     const requisiçãoEntrar = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", usuario);
     setInterval(manterConexao, 5000);
@@ -15,11 +15,13 @@ function entrarSala () {
 }
 function entradaLiberada() {
     alert ("Seja bem vindo ao bate-papo Driven!");
+    document.querySelector(".telaLogin").classList.add("escondido");
     listarMensagens();
 }
 function entradaErro () {
-    alert ("Nome de usuario em uso.Tente outro nome.");
-    entrarSala();
+    alert ("Nome de usuario inválido ou em uso. Tente outro nome.");
+    // entrarSala();
+    return;
 }
 
 // Conexão com o servidor
@@ -74,4 +76,21 @@ function envioErro(erro) {
     statusCode = erro.response.status;
     alert (`Opa! Algo deu errado...
 Erro ${statusCode}`);
+}
+
+// Mostrar/ocultar barra lateral com usuários online
+function mostrarOcultar() {
+    document.querySelector(".listaUsuarios").classList.toggle("escondido");
+    const requisitarUsuarios = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    requisitarUsuarios.then(popularListaUsuarios);
+}
+function popularListaUsuarios(listaUsuarios) {
+    usuariosOn = listaUsuarios.data
+    document.querySelector(".usuariosOnline").innerHTML = "";
+    for (let i = 0; i < usuariosOn.length; i++) {
+        document.querySelector(".usuariosOnline").innerHTML += `<li onclick="mostrarOcultar()">
+        <ion-icon name="person-circle"></ion-icon>
+        <p>${usuariosOn[i].name}</p>
+    </li>`
+    }
 }
