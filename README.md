@@ -4,6 +4,9 @@ Projeto 5- Bate-papo UOL (curso Driven)  Projeto 5 do curso de desenvolvimento F
 
 --Changelog--
 
+Versão 1.2:
+-Melhorias no desempenho;
+
 Versão 1.1:
 -Adicionada tela de login;
 -Adicionado menu lateral com lista de participantes online;
